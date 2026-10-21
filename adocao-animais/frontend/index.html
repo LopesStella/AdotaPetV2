@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdotaPet | Sistema de Adoção</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐾%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container header-content">
+      <a href="/" class="logo">🐾 AdotaPet</a>
+      <div id="user-area" class="hidden">
+        <span id="user-name"></span>
+        <button id="logout-button" class="btn btn-light">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="login-section" class="login-card">
+      <div class="login-icon">🐶 🐱</div>
+      <h1>Bem-vindo ao AdotaPet</h1>
+      <p>Entre para gerenciar animais e solicitações de adoção.</p>
+
+      <form id="login-form">
+        <label for="username">Usuário</label>
+        <input id="username" type="text" value="admin" required>
+
+        <label for="password">Senha</label>
+        <input id="password" type="password" required>
+
+        <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+        <p id="login-message" class="message" role="status"></p>
+      </form>
+    </section>
+
+    <section id="app-section" class="hidden">
+      <div class="hero">
+        <div>
+          <h1>Encontre um novo melhor amigo</h1>
+          <p>Gerencie os animais disponíveis e acompanhe as adoções.</p>
+        </div>
+        <span class="hero-icon">🐾</span>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="animals" type="button">Animais</button>
+        <button class="tab" data-tab="adoptions" type="button">Adoções</button>
+      </nav>
+
+      <section id="animals-panel">
+        <div class="section-header">
+          <div>
+            <h2>Animais cadastrados</h2>
+            <p>Consulte e cadastre animais no sistema.</p>
+          </div>
+          <button id="refresh-animals" class="btn btn-light">Atualizar</button>
+        </div>
+
+        <form id="animal-form" class="form-card">
+          <h3>Cadastrar animal</h3>
+
+          <div class="form-grid">
+            <div>
+              <label for="animal-name">Nome</label>
+              <input id="animal-name" required maxlength="100">
+            </div>
+
+            <div>
+              <label for="animal-species">Espécie</label>
+              <select id="animal-species" required>
+                <option value="cachorro">Cachorro</option>
+                <option value="gato">Gato</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="animal-breed">Raça</label>
+              <input id="animal-breed" required maxlength="100">
+            </div>
+
+            <div>
+              <label for="animal-age">Idade em anos</label>
+              <input id="animal-age" type="number" min="-100" max="100" required>
+            </div>
+          </div>
+
+          <label for="animal-description">Descrição</label>
+          <textarea id="animal-description" rows="3" maxlength="2000" required></textarea>
+
+          <button type="submit" class="btn btn-primary">Cadastrar animal</button>
+          <p id="animal-message" class="message" role="status"></p>
+        </form>
+
+        <div id="animals-list" class="cards"></div>
+      </section>
+
+      <section id="adoptions-panel" class="hidden">
+        <div class="section-header">
+          <div>
+            <h2>Solicitações de adoção</h2>
+            <p>Registre e acompanhe as solicitações.</p>
+          </div>
+          <button id="refresh-adoptions" class="btn btn-light">Atualizar</button>
+        </div>
+
+        <form id="adoption-form" class="form-card">
+          <h3>Nova solicitação</h3>
+
+          <label for="adoption-animal">Animal</label>
+          <select id="adoption-animal" required>
+            <option value="">Selecione um animal</option>
+          </select>
+
+          <div class="form-grid">
+            <div>
+              <label for="adopter-name">Nome do adotante</label>
+              <input id="adopter-name" minlength="2" maxlength="120" required>
+            </div>
+
+            <div>
+              <label for="adopter-email">E-mail</label>
+              <input id="adopter-email" type="email" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Solicitar adoção</button>
+          <p id="adoption-message" class="message" role="status"></p>
+        </form>
+
+        <div id="adoptions-list" class="cards"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer>AdotaPet · Sistema de adoção de animais</footer>
+</body>
+</html>
+

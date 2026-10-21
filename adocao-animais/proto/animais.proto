@@ -1,0 +1,75 @@
+
+syntax = "proto3";
+
+package animais;
+
+service AnimalService {
+  rpc CreateAnimal (CreateAnimalRequest) returns (AnimalResponse);
+  rpc GetAnimal (GetAnimalRequest) returns (AnimalResponse);
+  rpc ListAnimals (ListAnimalsRequest) returns (ListAnimalsResponse);
+  rpc UpdateAnimal (UpdateAnimalRequest) returns (AnimalResponse);
+  rpc ReserveAnimal (ReserveAnimalRequest) returns (ReserveAnimalResponse);
+  rpc ReleaseAnimal (ReleaseAnimalRequest) returns (ReleaseAnimalResponse);
+}
+
+message Animal {
+  string id = 1;
+  string name = 2;
+  string species = 3;
+  string breed = 4;
+  int32 age_years = 5;
+  string description = 6;
+  bool available = 7;
+}
+
+message CreateAnimalRequest {
+  string name = 1;
+  string species = 2;
+  string breed = 3;
+  int32 age_years = 4;
+  string description = 5;
+}
+
+message GetAnimalRequest {
+  string id = 1;
+}
+
+message ListAnimalsRequest {
+  bool available_only = 1;
+}
+
+message UpdateAnimalRequest {
+  string id = 1;
+  string name = 2;
+  string species = 3;
+  string breed = 4;
+  int32 age_years = 5;
+  string description = 6;
+  bool available = 7;
+}
+
+message AnimalResponse {
+  Animal animal = 1;
+}
+
+message ListAnimalsResponse {
+  repeated Animal animals = 1;
+}
+
+message ReserveAnimalRequest {
+  string animal_id = 1;
+  string adoption_id = 2;
+}
+
+message ReserveAnimalResponse {
+  bool newly_reserved = 1;
+}
+
+message ReleaseAnimalRequest {
+  string animal_id = 1;
+  string adoption_id = 2;
+}
+
+message ReleaseAnimalResponse {
+  bool released = 1;
+}

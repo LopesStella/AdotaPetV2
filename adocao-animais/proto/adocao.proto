@@ -1,0 +1,47 @@
+
+syntax = "proto3";
+
+package adocao;
+
+service AdocaoService {
+  rpc CreateAdoption (CreateAdoptionRequest) returns (AdoptionResponse);
+  rpc GetAdoption (GetAdoptionRequest) returns (AdoptionResponse);
+  rpc ListAdoptions (ListAdoptionsRequest) returns (ListAdoptionsResponse);
+  rpc UpdateAdoptionStatus (UpdateAdoptionStatusRequest) returns (AdoptionResponse);
+}
+
+message Adoption {
+  string id = 1;
+  string animal_id = 2;
+  string adopter_name = 3;
+  string adopter_email = 4;
+  string status = 5;
+  string created_at = 6;
+}
+
+message CreateAdoptionRequest {
+  string animal_id = 1;
+  string adopter_name = 2;
+  string adopter_email = 3;
+}
+
+message GetAdoptionRequest {
+  string id = 1;
+}
+
+message ListAdoptionsRequest {
+  string status_filter = 1;
+}
+
+message UpdateAdoptionStatusRequest {
+  string id = 1;
+  string status = 2;
+}
+
+message AdoptionResponse {
+  Adoption adoption = 1;
+}
+
+message ListAdoptionsResponse {
+  repeated Adoption adoptions = 1;
+}
